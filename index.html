@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>هوى الشام للاراكيل</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g1:#d4a843;--g2:#f5d77a;--g3:#a07830;
+  --dark:#080808;--dark2:#0f0f0f;--dark3:#161616;--dark4:#1e1e1e;
+  --text:#f5f0e8;--muted:#7a7060;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden}
+
+/* LOADER */
+#loader{position:fixed;inset:0;z-index:9999;background:var(--dark);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;transition:opacity 0.8s,visibility 0.8s}
+#loader.hide{opacity:0;visibility:hidden}
+.loader-text{font-family:'Tajawal',sans-serif;font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,var(--g2),var(--g1),var(--g3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:3px}
+.loader-bar{width:200px;height:1px;background:rgba(212,168,67,0.15);overflow:hidden}
+.loader-fill{height:100%;width:0;background:linear-gradient(90deg,var(--g3),var(--g1),var(--g2));animation:load 1.4s ease forwards}
+@keyframes load{to{width:100%}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s}
+nav.scrolled{background:rgba(8,8,8,0.93);backdrop-filter:blur(30px);padding:1rem 4rem;border-bottom:1px solid rgba(212,168,67,0.08)}
+.nav-logo{font-family:'Tajawal',sans-serif;font-size:1.2rem;font-weight:900;letter-spacing:2px;background:linear-gradient(135deg,var(--g2),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:rgba(245,240,232,0.5);text-decoration:none;font-size:0.82rem;font-weight:600;letter-spacing:2px;transition:color 0.3s}
+.nav-links a:hover{color:var(--g1)}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 30% 50%,rgba(212,168,67,0.06) 0%,transparent 60%),radial-gradient(ellipse 50% 80% at 80% 30%,rgba(212,168,67,0.04) 0%,transparent 60%)}
+.grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(212,168,67,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(212,168,67,0.04) 1px,transparent 1px);background-size:80px 80px}
+.corner-deco{position:absolute;width:300px;height:300px;border:1px solid rgba(212,168,67,0.08);border-radius:50%}
+.corner-deco.c1{top:-100px;right:-100px}
+.corner-deco.c2{bottom:-150px;left:-150px;width:400px;height:400px;border-width:0.5px}
+
+.hero-left{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:8rem 3rem 6rem 5rem}
+.hero-tag{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(212,168,67,0.08);border:1px solid rgba(212,168,67,0.2);border-radius:4px;padding:0.4rem 1rem;font-size:0.72rem;font-weight:700;letter-spacing:3px;color:var(--g1);margin-bottom:2rem;width:fit-content}
+.hero-tag .dot{width:6px;height:6px;background:var(--g1);border-radius:50%;animation:blink 2s ease infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+
+.hero h1{font-family:'Tajawal',sans-serif;font-size:clamp(3rem,5.5vw,6rem);font-weight:900;line-height:1.05;margin-bottom:0.5rem}
+.hero h1 .line1{display:block;color:rgba(245,240,232,0.9)}
+.hero h1 .line2{display:block;background:linear-gradient(135deg,var(--g2) 0%,var(--g1) 50%,var(--g3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:1rem;color:var(--muted);line-height:2;margin:2rem 0 3rem;max-width:380px}
+.hero-desc strong{color:var(--g1)}
+
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-wa{display:inline-flex;align-items:center;gap:0.7rem;background:linear-gradient(135deg,var(--g1),var(--g3));color:#0a0a0a;font-family:'Cairo',sans-serif;font-size:0.9rem;font-weight:800;padding:0.9rem 2rem;border-radius:6px;border:none;cursor:pointer;text-decoration:none;transition:transform 0.3s,box-shadow 0.3s;letter-spacing:1px}
+.btn-wa:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(212,168,67,0.35)}
+.btn-ig{display:inline-flex;align-items:center;gap:0.7rem;background:transparent;color:var(--text);font-family:'Cairo',sans-serif;font-size:0.9rem;font-weight:700;padding:0.9rem 2rem;border-radius:6px;border:1px solid rgba(245,240,232,0.12);cursor:pointer;text-decoration:none;transition:all 0.3s;letter-spacing:1px}
+.btn-ig:hover{border-color:var(--g1);color:var(--g1);transform:translateY(-3px);background:rgba(212,168,67,0.05)}
+
+.hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:2.5rem;border-top:1px solid rgba(245,240,232,0.06)}
+.stat-num{font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,var(--g2),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1;margin-bottom:0.3rem}
+.stat-lbl{font-size:0.75rem;color:var(--muted);font-weight:600;letter-spacing:2px}
+
+.hero-right{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;padding:8rem 5rem 6rem 2rem}
+.hero-card{width:100%;max-width:360px;background:rgba(255,255,255,0.025);border:1px solid rgba(212,168,67,0.12);border-radius:20px;padding:2.5rem;backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--g1),transparent)}
+.hero-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,168,67,0.05) 0%,transparent 70%);pointer-events:none}
+.card-hookah{font-size:6rem;text-align:center;display:block;margin-bottom:1.5rem;animation:floatHook 4s ease-in-out infinite;filter:drop-shadow(0 0 40px rgba(212,168,67,0.25));line-height:1}
+@keyframes floatHook{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-15px) rotate(2deg)}}
+.card-title{font-family:'Tajawal',sans-serif;font-size:1.3rem;font-weight:900;text-align:center;background:linear-gradient(135deg,var(--g2),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem}
+.card-sub{text-align:center;font-size:0.82rem;color:var(--muted);margin-bottom:2rem;line-height:1.8}
+.card-features{display:flex;flex-direction:column;gap:0.75rem}
+.card-feat{display:flex;align-items:center;gap:0.9rem;padding:0.75rem 1rem;border-radius:10px;background:rgba(212,168,67,0.04);border:1px solid rgba(212,168,67,0.08);transition:all 0.3s}
+.card-feat:hover{background:rgba(212,168,67,0.09);border-color:rgba(212,168,67,0.2);transform:translateX(-4px)}
+.feat-icon{width:18px;height:18px;flex-shrink:0;opacity:0.8}
+.feat-text{font-size:0.85rem;font-weight:600;color:rgba(245,240,232,0.8)}
+
+/* MARQUEE */
+.marquee-wrap{background:linear-gradient(135deg,var(--g1),var(--g3));padding:1rem 0;overflow:hidden}
+.marquee-track{display:flex;gap:3rem;animation:marqueeScroll 22s linear infinite;width:max-content}
+.marquee-track span{white-space:nowrap;font-size:0.8rem;font-weight:800;letter-spacing:3px;color:#0a0a0a;display:flex;align-items:center;gap:1rem}
+.marquee-track span::after{content:'✦';opacity:0.5}
+@keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.section{padding:7rem 5rem;position:relative}
+.sec-label{font-size:0.72rem;font-weight:800;letter-spacing:4px;color:var(--g1);margin-bottom:1rem;display:block}
+.sec-title{font-family:'Tajawal',sans-serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem}
+.sec-title span{background:linear-gradient(135deg,var(--g2),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-line{width:50px;height:2px;background:linear-gradient(90deg,var(--g1),transparent);margin-bottom:4rem;border-radius:2px}
+
+/* SERVICES — 3 cards only */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;max-width:1100px;margin:0 auto}
+.srv-card{background:var(--dark3);border:1px solid rgba(255,255,255,0.04);border-radius:16px;padding:2.2rem 1.8rem;transition:all 0.4s cubic-bezier(0.23,1,0.32,1);position:relative;overflow:hidden;cursor:default}
+.srv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--g1),transparent);transform:scaleX(0);transition:transform 0.4s}
+.srv-card:hover{background:var(--dark4);border-color:rgba(212,168,67,0.15);transform:translateY(-8px);box-shadow:0 30px 60px rgba(0,0,0,0.5)}
+.srv-card:hover::before{transform:scaleX(1)}
+.srv-num{font-size:0.65rem;font-weight:900;letter-spacing:3px;color:rgba(212,168,67,0.3);margin-bottom:1.5rem;display:block}
+.srv-icon{width:44px;height:44px;margin-bottom:1.2rem;display:block;opacity:0.9}
+.srv-card h3{font-size:1.05rem;font-weight:800;margin-bottom:0.6rem}
+.srv-card p{font-size:0.82rem;color:var(--muted);line-height:1.8}
+
+/* LOCATION */
+.location-section{background:var(--dark2)}
+.location-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.location-map-box{background:var(--dark3);border:1px solid rgba(212,168,67,0.1);border-radius:20px;padding:3.5rem 3rem;text-align:center;position:relative;overflow:hidden}
+.location-map-box::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(212,168,67,0.04) 0%,transparent 70%)}
+.map-icon-svg{width:60px;height:60px;margin:0 auto 1.2rem;display:block;animation:pin 2s ease-in-out infinite alternate}
+@keyframes pin{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+.map-address{font-family:'Tajawal',sans-serif;font-size:1.6rem;font-weight:900;background:linear-gradient(135deg,var(--g2),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem}
+.map-sub{font-size:0.92rem;color:var(--muted);line-height:1.8}
+.location-info p{color:var(--muted);line-height:2;font-size:1rem;margin-bottom:2.5rem}
+.address-pill{display:inline-flex;align-items:center;gap:0.8rem;background:rgba(212,168,67,0.06);border:1px solid rgba(212,168,67,0.15);border-radius:8px;padding:1rem 1.5rem;font-size:0.9rem;font-weight:700;color:var(--g1)}
+
+/* CONTACT — ONE section, clean */
+.contact-section{max-width:860px;margin:0 auto;text-align:center}
+.contact-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:4rem}
+.c-card{border-radius:18px;padding:3rem 2rem;text-decoration:none;display:flex;flex-direction:column;align-items:center;transition:all 0.4s cubic-bezier(0.23,1,0.32,1);position:relative;overflow:hidden}
+.c-card:hover{transform:translateY(-8px) scale(1.02)}
+.c-card.wa{background:linear-gradient(140deg,#071f1c 0%,#0d3b30 60%,#1a5c47 100%);border:1px solid rgba(37,211,102,0.2);box-shadow:0 10px 40px rgba(37,211,102,0.08)}
+.c-card.wa:hover{box-shadow:0 25px 60px rgba(37,211,102,0.2)}
+.c-card.ig{background:linear-gradient(140deg,#1a0a2e 0%,#2d1060 60%,#4a1a80 100%);border:1px solid rgba(200,100,200,0.2);box-shadow:0 10px 40px rgba(200,100,200,0.08)}
+.c-card.ig:hover{box-shadow:0 25px 60px rgba(200,100,200,0.2)}
+.c-social-icon{width:56px;height:56px;margin-bottom:1.2rem}
+.c-platform{font-size:0.68rem;font-weight:800;letter-spacing:4px;opacity:0.55;margin-bottom:0.5rem;display:block}
+.c-handle{font-size:1.3rem;font-weight:900;direction:ltr;display:block;margin-bottom:1.8rem;color:#fff}
+.c-action{display:inline-block;padding:0.65rem 1.8rem;border-radius:50px;font-family:'Cairo',sans-serif;font-size:0.82rem;font-weight:800;letter-spacing:1px;border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.75);transition:all 0.3s}
+.c-card:hover .c-action{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.35);color:#fff}
+
+/* FOOTER */
+footer{border-top:1px solid rgba(255,255,255,0.04);padding:3rem 5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.foot-logo{font-family:'Tajawal',sans-serif;font-size:1.1rem;font-weight:900;background:linear-gradient(135deg,var(--g2),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px}
+footer p{font-size:0.75rem;color:var(--muted)}
+
+/* FLOAT */
+.float-btns{position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%);z-index:90;display:flex;gap:0.8rem}
+.fb{display:flex;align-items:center;gap:0.55rem;padding:0.72rem 1.5rem;border-radius:6px;font-family:'Cairo',sans-serif;font-size:0.85rem;font-weight:800;letter-spacing:1px;cursor:pointer;text-decoration:none;transition:all 0.3s;backdrop-filter:blur(20px)}
+.fb.wa-f{background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.28);color:#25d366}
+.fb.wa-f:hover{background:#25d366;color:#000}
+.fb.ig-f{background:rgba(180,80,180,0.1);border:1px solid rgba(180,80,180,0.28);color:#d477d4}
+.fb.ig-f:hover{background:linear-gradient(135deg,#833ab4,#fd1d1d);color:#fff;border-color:transparent}
+.fb svg{width:18px;height:18px;flex-shrink:0}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.23,1,0.32,1)}
+.reveal.up{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(40px);transition:all 0.8s cubic-bezier(0.23,1,0.32,1)}
+.reveal-l.up{opacity:1;transform:translateX(0)}
+
+@media(max-width:900px){
+  nav{padding:1.2rem 2rem}.nav-links{display:none}
+  .hero{grid-template-columns:1fr}.hero-right{display:none}
+  .hero-left{padding:8rem 2rem 5rem}
+  .section{padding:5rem 2rem}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .location-inner{grid-template-columns:1fr}
+  .contact-cards{grid-template-columns:1fr}
+  footer{flex-direction:column;text-align:center;padding:2rem}
+}
+@media(max-width:480px){
+  .services-grid{grid-template-columns:1fr}
+  .hero-stats{gap:1.8rem}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-text">هوى الشام للاراكيل</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">هوى الشام للاراكيل</div>
+  <ul class="nav-links">
+    <li><a href="#services">خدماتنا</a></li>
+    <li><a href="#location">موقعنا</a></li>
+    <li><a href="#contact">تواصل</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-lines"></div>
+  <div class="corner-deco c1"></div>
+  <div class="corner-deco c2"></div>
+
+  <div class="hero-left">
+    <div class="hero-tag"><span class="dot"></span>وجهتك الأولى للاراكيل الفاخرة</div>
+    <h1>
+      <span class="line1">هوى الشام</span>
+      <span class="line2">للاراكيل</span>
+    </h1>
+    <p class="hero-desc">أجود وأحدث <strong>الاراكيل ومستلزماتها</strong> في الرمادي — تجربة راقية بكل تفصيلة</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/9647859009001" target="_blank" class="btn-wa">
+        <!-- WhatsApp SVG -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        واتساب
+      </a>
+      <a href="https://instagram.com/al_sham.9" target="_blank" class="btn-ig">
+        <!-- Instagram SVG -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        انستقرام
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num">100+</span><span class="stat-lbl">نوع راكيل</span></div>
+      <div class="stat-item"><span class="stat-num">★ 5</span><span class="stat-lbl">تقييم العملاء</span></div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card">
+      <span class="card-hookah">🪔</span>
+      <div class="card-title">هوى الشام للاراكيل</div>
+      <div class="card-sub">نختار لك الأفضل من أرقى الماركات</div>
+      <div class="card-features">
+        <div class="card-feat">
+          <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="#d4a843" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span class="feat-text">أحدث موديلات الاراكيل</span>
+        </div>
+        <div class="card-feat">
+          <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="#d4a843" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span class="feat-text">جميع أنواع المعسل الفاخر</span>
+        </div>
+        <div class="card-feat">
+          <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke="#d4a843" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span class="feat-text">فحم ومستلزمات متكاملة</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>هوى الشام للاراكيل</span><span>الرمادي الخمسه كيلو</span><span>أحدث الاراكيل</span><span>جودة فاخرة</span><span>خلف مطعم حجي محمد</span>
+    <span>هوى الشام للاراكيل</span><span>الرمادي الخمسه كيلو</span><span>أحدث الاراكيل</span><span>جودة فاخرة</span><span>خلف مطعم حجي محمد</span>
+    <span>هوى الشام للاراكيل</span><span>الرمادي الخمسه كيلو</span><span>أحدث الاراكيل</span><span>جودة فاخرة</span><span>خلف مطعم حجي محمد</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="reveal">
+    <span class="sec-label">ما نقدمه</span>
+    <h2 class="sec-title">خدماتنا <span>المميزة</span></h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="services-grid">
+    <div class="srv-card reveal">
+      <span class="srv-num">01</span>
+      <svg class="srv-icon" viewBox="0 0 24 24" fill="none" stroke="#d4a843" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+      <h3>أحدث الاراكيل</h3>
+      <p>نوفر أحدث وأجود الاراكيل من أفضل الماركات العالمية المعروفة</p>
+    </div>
+    <div class="srv-card reveal">
+      <span class="srv-num">02</span>
+      <svg class="srv-icon" viewBox="0 0 24 24" fill="none" stroke="#d4a843" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <h3>معسل فاخر</h3>
+      <p>تشكيلة واسعة من أرقى أنواع المعسل بنكهات متنوعة ومميزة</p>
+    </div>
+    <div class="srv-card reveal">
+      <span class="srv-num">03</span>
+      <svg class="srv-icon" viewBox="0 0 24 24" fill="none" stroke="#d4a843" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      <h3>فحم ومستلزمات</h3>
+      <p>أجود أنواع الفحم وكل ما تحتاجه لتجربة راكيل مثالية</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="section location-section" id="location">
+  <div class="location-inner">
+    <div class="location-map-box reveal">
+      <svg class="map-icon-svg" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="rgba(212,168,67,0.15)" stroke="#d4a843" stroke-width="1.5"/>
+        <circle cx="12" cy="9" r="2.5" fill="#d4a843"/>
+      </svg>
+      <div class="map-address">الرمادي</div>
+      <div class="map-sub">الخمسه كيلو<br/>خلف مطعم حجي محمد</div>
+    </div>
+    <div class="location-info reveal-l">
+      <span class="sec-label">موقعنا</span>
+      <h2 class="sec-title">تجدنا <span>هنا</span></h2>
+      <div class="sec-line"></div>
+      <p>نحن في قلب الرمادي في موقع مميز وسهل الوصول لجميع زبائننا الكرام</p>
+      <div class="address-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#d4a843"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        الرمادي — الخمسه كيلو، خلف مطعم حجي محمد
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT — مرة وحدة فقط -->
+<section class="section" id="contact">
+  <div class="contact-section">
+    <div class="reveal">
+      <span class="sec-label">تواصل معنا</span>
+      <h2 class="sec-title">نحن <span>هنا</span> دائماً</h2>
+      <div class="sec-line" style="margin:0 auto 0"></div>
+    </div>
+    <div class="contact-cards">
+      <!-- WhatsApp -->
+      <a href="https://wa.me/9647859009001" target="_blank" class="c-card wa reveal">
+        <svg class="c-social-icon" viewBox="0 0 24 24" fill="#25d366">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span class="c-platform">WHATSAPP</span>
+        <span class="c-handle">07859009001</span>
+        <span class="c-action">تحدث معنا الآن</span>
+      </a>
+      <!-- Instagram -->
+      <a href="https://instagram.com/al_sham.9" target="_blank" class="c-card ig reveal">
+        <svg class="c-social-icon" viewBox="0 0 24 24" fill="url(#igGrad)">
+          <defs>
+            <linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#f09433"/>
+              <stop offset="25%" stop-color="#e6683c"/>
+              <stop offset="50%" stop-color="#dc2743"/>
+              <stop offset="75%" stop-color="#cc2366"/>
+              <stop offset="100%" stop-color="#bc1888"/>
+            </linearGradient>
+          </defs>
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        <span class="c-platform">INSTAGRAM</span>
+        <span class="c-handle">@al_sham.9</span>
+        <span class="c-action">تابعنا الآن</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">هوى الشام للاراكيل ✦</div>
+  <p>الرمادي — الخمسه كيلو، خلف مطعم حجي محمد</p>
+  <p style="opacity:0.3;font-size:0.7rem">© 2025 جميع الحقوق محفوظة</p>
+</footer>
+
+<!-- FLOAT BUTTONS -->
+<div class="float-btns">
+  <a href="https://wa.me/9647859009001" target="_blank" class="fb wa-f">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    واتساب
+  </a>
+  <a href="https://instagram.com/al_sham.9" target="_blank" class="fb ig-f">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    انستقرام
+  </a>
+</div>
+
+<script>
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').classList.add('hide')},1600)});
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)});
+const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('up'),i*120)}})},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-l').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
